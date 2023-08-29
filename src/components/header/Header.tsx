@@ -11,6 +11,7 @@ import {
 import React from "react";
 import styles from "./Header.module.css";
 import logo from "../../assets/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const items: MenuProps["items"] = [
   {
@@ -24,6 +25,8 @@ const items: MenuProps["items"] = [
 ];
 
 export const Header: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles["app-header"]}>
       {/* top-header */}
@@ -36,8 +39,8 @@ export const Header: React.FC = () => {
             </Button>
           </Dropdown>
           <Button.Group className={styles["button-group"]}>
-            <Button>注册</Button>
-            <Button>登陆</Button>
+            <Button onClick={() => navigate("/signIn")}>注册</Button>
+            <Button onClick={() => navigate("/register")}>登陆</Button>
           </Button.Group>
         </div>
       </div>
