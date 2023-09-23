@@ -12,35 +12,20 @@ import React from "react";
 import styles from "./Header.module.css";
 import logo from "../../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
-import { change } from "../../redux/languageSlice";
+
+const items: MenuProps["items"] = [
+  {
+    key: "1",
+    label: <a>中文</a>,
+  },
+  {
+    key: "2",
+    label: <a>English</a>,
+  },
+];
 
 export const Header: React.FC = () => {
   const navigate = useNavigate();
-
-  const dispatch = useAppDispatch();
-
-  const languageValue = useAppSelector((state) => state.language);
-
-  const menuClickHandler = (e) => {
-    console.log(e);
-    dispatch(change({ value: e.key }));
-  };
-
-  const items: MenuProps["items"] = languageValue.languageList.map((i) => {
-    return { key: i.code, label: <a>{i.name}</a> };
-  });
-
-  // const items: MenuProps["items"] = [
-  //   {
-  //     key: "1",
-  //     label: <a>中文</a>,
-  //   },
-  //   {
-  //     key: "2",
-  //     label: <a>English</a>,
-  //   },
-  // ];
 
   return (
     <div className={styles["app-header"]}>
@@ -48,9 +33,9 @@ export const Header: React.FC = () => {
       <div className={styles["top-header"]}>
         <div className={styles.inner}>
           <Typography.Text>让旅游更幸福</Typography.Text>
-          <Dropdown menu={{ items, onClick: menuClickHandler }}>
+          <Dropdown menu={{ items }}>
             <Button style={{ marginLeft: 15 }} icon={<GlobalOutlined />}>
-              {languageValue.language == "zh" ? "中文" : "English"}
+              语言
             </Button>
           </Dropdown>
           <Button.Group className={styles["button-group"]}>
