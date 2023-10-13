@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import i18n from '../i18n/configs';
 
 interface LanguageState {
   language: string,
@@ -17,6 +18,7 @@ export const languageSlice = createSlice({
   initialState,
   reducers: {
     change: (state, { payload }) => {
+      i18n.changeLanguage(payload.value)
       state.language = payload.value
     }
   }

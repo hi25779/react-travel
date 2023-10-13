@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface PropsType {
   id: string | number;
@@ -17,6 +18,7 @@ export const ProductImage: React.FC<PropsType> = ({
   price,
   title,
 }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <div onClick={() => navigate(`detail/${id}`)}>
@@ -28,7 +30,8 @@ export const ProductImage: React.FC<PropsType> = ({
       <div>
         <Typography.Text type="secondary">{title.slice(0, 25)}</Typography.Text>
         <Typography.Text type="danger" strong>
-          ￥ {price}起
+          ￥ {price}
+          {t("home_page.start_from")}
         </Typography.Text>
       </div>
     </div>
